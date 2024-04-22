@@ -1,5 +1,6 @@
 # Secret Env
 # .env
+# .nodemodules
 
 #node packages
 node_modules/
