@@ -14,7 +14,7 @@ const Bookins = async (req, res) => {
       return res.status(400).json({message: 'you cannot make bookins in the past.'});
     };
     if(Restaurants1.Title === Restaurants){
-      Restaurant.Array.push({ Name: Name, Email: Email, Date: DateISO});
+      Restaurant.Array.push({ name: Name, email: Email, date: DateISO});
       await Restaurant.save();
       res.status(200).json({message:'the bookin was created succesfully!'});
     }else{
@@ -30,7 +30,7 @@ const deleteBookin = async (req, res) => {
     const {id, RestaurantName} = req.body;
     const deleteOperation = {
       $pull: {
-        Array: {_id:id}
+        Array: { _id:id } 
       }
     }
     await Restaurant.findOneAndUpdate(
