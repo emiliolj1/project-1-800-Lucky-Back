@@ -41,5 +41,7 @@ const deleteBookin = async (req, res) => {
     res.status(200).json({message: 'succesfully deleted'});
   } catch (error) {
     res.status(500).json({message:'we cannot deleted the bookin, sorry for the problems', error: error.message});
-  }
-}
+  };
+};
+
+module.exports = {Bookins, deleteBookin}
