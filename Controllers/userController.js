@@ -130,3 +130,5 @@ const changePassword =  async (req, res) => {
     res.status(500).json({ message: 'we cannot change the password, sorry for the problems', error: error.message })
   }
 }
+
+module.exports = {addUser, loginUser, HandleLogOut, changePassword}
