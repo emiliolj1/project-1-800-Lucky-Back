@@ -30,7 +30,7 @@ const deleteBookin = async (req, res) => {
     const {id, RestaurantName} = req.body;
     const deleteOperation = {
       $pull: {
-        Array: { _id:id } 
+        Array: {_id:id}
       }
     }
     await Restaurant.findOneAndUpdate(
