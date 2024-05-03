@@ -87,22 +87,27 @@ const deleteUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    
+    const user = await User.find({});
+    res.status(200).json(user);
   } catch (error) {
-    
+    res.status(500).json({message:'we cannot get all users, sorry for the problems', error: error.message});
   };
 };
 const getAllRestaurants = async (req,res) => {
   try {
-    
+    const restaurant = await Restaurant.find({});
+    res.status(200).json(restaurant);
   } catch (error) {
-    
+    res.status(500).json({message:'we cannot get all Restaurants, sorry for the problems', error: error.message});
   };
 };
 const getAllEvents = async (req,res) => {
   try {
-    
+    const event = await Event.find({});
+    res.status(200).json(event);
   } catch (error) {
-    
+    res.status(500).json({message:'we cannot get all Events, sorry for the problems', error: error.message});
   };
 };
+
+module.exports = {createRestaurant, createEvent, deleteEvent, deleteRestaurant, deleteUser, getAllEvents, getAllRestaurants, getAllUsers};
