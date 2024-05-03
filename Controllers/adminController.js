@@ -2,7 +2,6 @@ require('dotenv').config();
 const { User } = require('../Models/usersModel');
 const { Event } = require('../Models/eventsModel');
 const { Restaurant, Restaurant } = require('../Models/restaurantModel');
-const e = require('express');
 
 const createRestaurant = async (req, res) => {
   try {
@@ -26,7 +25,7 @@ const createRestaurant = async (req, res) => {
 };
 const createEvent = async (req, res) => {
   try {
-    const {} = req.body;
+    const {Title, Information1} = req.body;
     const event =  await Event.findOne({Title});
     if(event){
       return res.status(400).json({message:''});
@@ -48,16 +47,38 @@ const createEvent = async (req, res) => {
 
 const deleteRestaurant = async (req,res) => {
   try {
-    
+    const {id} = req.body;
+    const restaurant = await Restaurant.findOneAndDelete({_id: id});
+    if(!restaurant){
+      return res.status(400).json({message: 'we cant find the restaurant, sorry.'});
+    };
+    res.status(200).json({message:'we already eliminate the restaurant!'});
   } catch (error) {
-    
+    res.status(500).json({message: 'we cannot eliminate the restaurant, sorry for the problems', error: error.message});
   };
 };
 const deleteEvent = async (req, res) => {
   try {
-
+    const {id} = req.body;
+    const event = await Event.findOneAndDelete({_id: id});
+    if(!event){
+      return res.status(400).json({message:'we cant find the restaurant, sorry.'});
+    };
+    res.status(200).json({message:'we already eliminate the User!'});
   } catch (error) {
-
+    res.status(500).json({message: 'we cannot eliminate the event, sorry for the problems', error: error.message});
+  };
+};
+const deleteUser = async (req, res) => {
+  try {
+    const {id} = req.body;
+    const user = await User.findOneAndDelete({_id: id});
+    if(!user){
+      return res.status(400).json({message:'we cant find the User, sorry.'});
+    };
+    res.status(200).json({message:'we already eliminate the User!'});
+  } catch (error) {
+    res.status(500).json({message: 'we cannot eliminate the User, sorry for the problems', error: error.message});
   };
 };
 
@@ -69,7 +90,7 @@ const getAllUsers = async (req, res) => {
     
   } catch (error) {
     
-  }
+  };
 };
 const getAllRestaurants = async (req,res) => {
   try {
